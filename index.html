@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pre-entrega 2 DOM</title>
+        <link href="https://fonts.googleapis.com/css?family=Archivo|Archivo+Narrow:400,600" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+        <link href="./src/css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header class="cabecera">
+            <div class="contadores">
+                <div class="contador-item">
+                    <h4 class="cabecera-titulo">Movimientos</h4>
+                    <div class="cabecera-num"><span id="mov">00</span>/<span id="mov-total">20</span></div>
+                </div>
+                <div id="cronometro" class="contador-item">
+                    <h4 class="cabecera-titulo">Tiempo</h4>
+                    <div class="cabecera-num"><span id="minutos">00</span>:<span id="segundos">00</span></div>
+                </div>
+                <div class="btn-switch">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        fill="currentColor"
+                        class="bi bi-play-fill btn-play"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+                    </svg>
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        fill="currentColor"
+                        class="bi bi-pause-fill btn-pause"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5" />
+                    </svg>
+                </div>
+            </div>
+            <div id="modo" class="modo">
+                <h4 class="cabecera-titulo">Modo</h4>
+                <div class="cabecera-num selecciona-modo">
+                    <img src="./src/imagenes/portal-rick-and-morty.gif" width="60px" />
+                </div>
+            </div>
+            <div class="nivel">
+                <h4 class="cabecera-titulo">Nivel</h4>
+                <div class="cabecera-num">
+                    <span id="nivel">00</span>
+                </div>
+            </div>
+            <button id="control-nivel" class="control-nivel">…</button>
+        </header>
+        <main>
+            <div id="mesa" class="mesa"></div>
+        </main>
+        <div class="selecciona-nivel">
+            <button id="cierra-niveles" class="cierra-niveles">&times;</button>
+            <ul></ul>
+        </div>
+
+        <audio src="./src/sonidos/cool.mp3" class="sonido" id="sonido-acierto" preload="auto"></audio>
+        <audio src="./src/sonidos/carta.mp3" class="sonido" id="sonido-carta" preload="auto"></audio>
+        <audio src="./src/sonidos/this_is_not_ok.mp3" class="sonido" id="sonido-error" preload="auto"></audio>
+        <audio src="./src/sonidos/i_love_it.mp3" class="sonido" id="siguiente-nivel" preload="auto"></audio>
+        <audio src="./src/sonidos/okay_cool.mp3" class="sonido" id="reiniciar" preload="auto"></audio>
+        <audio src="./src/sonidos/oh_geez.mp3" class="sonido" id="continuar" preload="auto"></audio>
+
+        <!-- Librerías -->
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- módulos & script -->
+        <script type="module" src="./src/js/script.js"></script>
+    </body>
+</html>

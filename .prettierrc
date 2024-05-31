@@ -1,0 +1,83 @@
+{
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "arrowParens": "always",
+        "bracketSameLine": true,
+        "bracketSpacing": false,
+        "semi": true,
+        "experimentalTernaries": false,
+        "singleQuote": true,
+        "jsxSingleQuote": false,
+        "quoteProps": "as-needed",
+        "trailingComma": "all",
+        "singleAttributePerLine": true,
+        "htmlWhitespaceSensitivity": "css",
+        "vueIndentScriptAndStyle": false,
+        "proseWrap": "preserve",
+        "insertPragma": false,
+        "printWidth": 164,
+        "requirePragma": false,
+        "tabWidth": 4,
+        "useTabs": true,
+        "embeddedLanguageFormatting": "auto"
+      }
+    },
+    {
+      "files": "*.css",
+      "options": {
+        "arrowParens": "always",
+        "bracketSameLine": true,
+        "bracketSpacing": false,
+        "semi": true,
+        "experimentalTernaries": false,
+        "singleQuote": true,
+        "jsxSingleQuote": false,
+        "quoteProps": "as-needed",
+        "trailingComma": "all",
+        "singleAttributePerLine": true,
+        "htmlWhitespaceSensitivity": "css",
+        "vueIndentScriptAndStyle": false,
+        "proseWrap": "preserve",
+        "insertPragma": false,
+        "printWidth": 80,
+        "requirePragma": false,
+        "useTabs": false,
+        "embeddedLanguageFormatting": "auto",
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["*.js", "*.json"],
+      "options": {
+        "parser": "babel",
+        "arrowParens": "avoid",
+        "bracketSameLine": true,
+        "bracketSpacing": false,
+        "semi": true,
+        "experimentalTernaries": false,
+        "singleQuote": true,
+        "jsxSingleQuote": false,
+        "quoteProps": "as-needed",
+        "trailingComma": "all",
+        "singleAttributePerLine": true,
+        "htmlWhitespaceSensitivity": "css",
+        "vueIndentScriptAndStyle": false,
+        "proseWrap": "preserve",
+        "insertPragma": false,
+        "printWidth": 80,
+        "requirePragma": false,
+        "tabWidth": 2,
+        "useTabs": false,
+        "embeddedLanguageFormatting": "auto"
+      }
+    },
+    {
+      "files": ".prettierrc",
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
+}
