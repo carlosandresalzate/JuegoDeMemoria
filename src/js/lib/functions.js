@@ -16,8 +16,6 @@ import { arrayNiveles, ocultaMenuNiveles } from './niveles.js';
  * @param {string} value el valor obtenido de localStorage.
  * @returns {?*} El valor almacenado en localStorage o null si no existe
  */
-// const cacheKey = localStorage.getItem('grupoTarjetas');
-// console.log('cacheKey', Boolean(cacheKey));
 function obtieneCache(value) {
   console.log('obtieneCache(key)');
 
@@ -25,6 +23,13 @@ function obtieneCache(value) {
   return personajes;
 }
 
+/**
+ * @description Finaliza el juego pausando el cronometro y mostrando  el modal
+ * correspondiente
+ *
+ * @function finalizar
+ * @global
+ */
 function finalizar() {
   console.log('finalizar()');
   pausarCronometro();
@@ -44,6 +49,12 @@ function finalizar() {
 
 // #region descubrir y comparar;
 
+/**
+ * @description Descubre una tarjeta y comprueba si hay un par coincidente.
+ * @function descubrir
+ * @this {HTMLElement}
+ * @returns
+ */
 function descubrir() {
   console.log('descubrir()');
   let descubiertas;
@@ -52,11 +63,13 @@ function descubrir() {
     '.descubiertas:not(.acertado)'
   );
 
+  // si ya hay dos tarjetas descubiertas, no hacer nada;
   if (totalDescubiertas.length > 1) {
-    console.log(totalDescubiertas.length > 1);
+    // console.log(totalDescubiertas.length > 1);
     return;
   }
 
+  // marca la tarjeta descubierta
   this.classList.add('descubierta');
 
   // agregamos un sonido
@@ -74,6 +87,12 @@ function descubrir() {
   if (tarjetasPendientes.length === 0) setTimeout(finalizar, 1000);
 }
 
+/**
+ * @description compara dos tarjetas descubiertas para verificar si don iguales
+ *
+ * @function comparar
+ * @param {NodeList} tarjetasAComparar -lasTarjetas que se estan comparando.
+ */
 function comparar(tarjetasAComparar) {
   console.log('comparar(tarjetasAComparar)');
   if (
@@ -85,6 +104,10 @@ function comparar(tarjetasAComparar) {
   }
 }
 
+/**
+ * @description marca un par de tarjetas como acertadas y reproduce un sonido
+ * @param {NodeList} lasTarjetas las tarjetas que son un par acertado
+ */
 function acierto(lasTarjetas) {
   console.log('acierto(lasTarjetas)');
   console.log(lasTarjetas[0].dataset.valor);
@@ -99,14 +122,19 @@ function acierto(lasTarjetas) {
   document.querySelector('#sonido-acierto').play();
 }
 
+/**
+ * @description marca un par de tarjetas como incorectas y las oculta despues
+ * de un breve retraso
+ *
+ * @function error
+ * @param {NodeList} lasTarjetas - las tarjetas que no son par
+ */
 function error(lasTarjetas) {
   console.log('error(lasTarjetas)');
   lasTarjetas.forEach((element) => {
     element.classList.add('error');
   });
 
-  // agregar sonido de error
-  console.log('sonido de error');
   document.querySelector('#sonido-error').play();
   // elimina la clase descubierta y error despues de un segundo
   setTimeout(function () {
@@ -118,7 +146,13 @@ function error(lasTarjetas) {
   }, 1000);
 }
 
-// #region FUncion reiniciar la logica de esta se trabaja en un modal.
+/**
+ * @description reinicia el juego utilizando la configuracion almacenada en
+ * localStorage
+ *
+ * @function reiniciar
+ *
+ */
 function reiniciar() {
   console.log('reiniciar()');
   let informacionDelJuego = JSON.parse(
@@ -129,6 +163,12 @@ function reiniciar() {
   inicioJuego(modoBool);
 }
 
+/**
+ * @description inicia el juego en modo normal
+ *
+ * @function iniciaJuegoNormal
+ * @param {boolean} modoRelax - indica si el modo relajado esta activo
+ */
 function iniciaJuegoNormal(modoRelax) {
   console.log('iniciaJuegoNormal', modoRelax);
   document.querySelector('.cabecera').style.display = 'flex';
@@ -136,6 +176,12 @@ function iniciaJuegoNormal(modoRelax) {
   inicioJuego(modoRelax);
 }
 
+/**
+ * @description Inicia Juego en modo relajado
+ *
+ * @function inciaJuegoRelax
+ * @param {boolean} modoRelax - indica si el modo relajado  esta activo
+ */
 function iniciaJuegoRelax(modoRelax) {
   console.log('inciaJuegoRelax', modoRelax);
   document.querySelector('.cabecera').style.display = 'flex';
@@ -144,17 +190,36 @@ function iniciaJuegoRelax(modoRelax) {
   inicioJuego(modoRelax);
 }
 
-// cierra el menu cuando se hace click fuera del contendor.
+/**
+ * @description cierra el menu niveles cuando se hace clic fuera del contenedor
+ *
+ * @function clickFueraDelMenu
+ * @param {Event} evento  - evento del clic
+ */
 function clickFueraDelMenu(evento) {
   if (evento.target.closest('.selecciona-nivel')) return;
   document.querySelector('.selecciona-nivel').classList.remove('visible');
 }
 
-// se cierra el menu con la tecla Esc
+/**
+ * @description cierra el menu de niveles cuando se presiona la tecla Escape
+ *
+ * @function teclasEscCierraMenu
+ * @param {evento} evento - el evento del teclado
+ */
 function teclasEscCierraMenu(evento) {
   if (evento.key === 'Escape') ocultaMenuNiveles();
 }
 
+/**
+ * @description anima la opaciodad de un elemento
+ *
+ * @function animarLaOpacidad
+ * @param {HTMLElement} elemento - elemento a animar
+ * @param {number} desde - el valor inicial de la opacidad
+ * @param {number} hasta - el valor final de la opacidad
+ * @param {number} duracion - la duracion de la animacion en milisengundos
+ */
 function animarLaOpacidad(elemento, desde, hasta, duracion) {
   const tiempo = 10;
   const pasos = duracion / tiempo;
