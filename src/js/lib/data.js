@@ -129,6 +129,10 @@ async function numeroRandom() {
  * @description La funcion busca en la API la informacion de los personajes de
  * forma aleatoria hasta alcanzar la cantidad especificada.
  *
+ * @async
+ *
+ * @function obtenerPersonajes
+ *
  * @param {number} number El numero de personajes aleatorios que se desea
  * obtener.
  * @param {Array<Object>} obtenidos Array que contiene los personajes ya

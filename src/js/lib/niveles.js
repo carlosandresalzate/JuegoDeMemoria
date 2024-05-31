@@ -1,3 +1,8 @@
+/**
+ * @file niveles.js
+ * @description Archivo con funciones relacionadas con los niveles del juego
+ */
+
 // import { detenerCronometro } from './cronometro.js';
 import { pausarCronometro, playCronometro } from './cronometro.js';
 import { obtieneCache } from './functions.js';
@@ -6,8 +11,12 @@ import { inicioJuego } from './inicio.js';
 import { cacheKey } from './variables.js';
 
 /**
+ * @description Crea un array de objetos que representan los niveles del juego
  *
- * @param {Array<Array>} grupoTarjetas
+ * @function arrayNiveles
+ * @param {Array<Array>} grupoTarjetas - grupo tarjetas para cada nivel.
+ * @returns {Array<Object>} un array de niveles con tarjetas y movimientos
+ * permitidos.
  */
 function arrayNiveles(grupoTarjetas) {
   const niveles = [
@@ -44,6 +53,14 @@ function arrayNiveles(grupoTarjetas) {
   return niveles;
 }
 
+/**
+ * @description Obtiene los datos del nivel actual del juego
+ *
+ * @function nivelesDelJuego
+ * @param {Array<Array>} grupoTarjetas - grupo de tarjetas para cada nivel
+ * @param {number} nivelActual - el nivel actual del juego
+ * @returns {Object} el objeto del nivel actual
+ */
 function nivelesDelJuego(grupoTarjetas, nivelActual) {
   console.log('nivelesDelJuego(grupoTarjetas, nivelActual)');
   const niveles = arrayNiveles(grupoTarjetas);
@@ -51,7 +68,11 @@ function nivelesDelJuego(grupoTarjetas, nivelActual) {
   return niveles[nivelActual];
 }
 
-// #region Cambiar nivel
+/**
+ * @description sube al siguiente nivel del juego
+ *
+ * @function subeNivel
+ */
 function subeNivel() {
   console.log('subeNivel()');
   let informacionDelJuego = JSON.parse(
@@ -68,8 +89,9 @@ function subeNivel() {
 }
 
 /**
- * @summary debe recibir como argumentos el nivel en el que se encuentre y la
- * cantidad de movimientos realizados en el nivel, aun incompleta.
+ * @description actualiza el nivel actual en la interfaz del usuario
+ *
+ * @function actualizaNivel
  */
 function actualizaNivel() {
   console.log('actualizaNivel()');
@@ -95,6 +117,11 @@ function actualizaNivel() {
   nivel.innerHTML = nivelTexto;
 }
 
+/**
+ * @description carga el nuevo nivel del juego
+ *
+ * @function cargaNuevoNivel
+ */
 function cargaNuevoNivel() {
   console.log('cargaNuevoNivel()');
 
@@ -115,11 +142,12 @@ function cargaNuevoNivel() {
   inicioJuego(modoRelax);
 }
 
-// #region Menu niveles
-
 /**
+ * @description escribe los niveles del menu de seleccion de niveles
+ *
+ * @function escribeNiveles
  * @summary recibe los niveles los itera con foreach para recibir el elemento y el indice, y agrega a una etiqueta li el indice que seria el numero del nivel.
- * @param {} - recibe como parametros los niveles totales para iterarlos
+ * @param {Array<Object>} niveles - los niveles del juego
  */
 function escribeNiveles(niveles) {
   console.log('escribeNiveles(niveles)');
@@ -138,11 +166,11 @@ function escribeNiveles(niveles) {
 }
 
 /**
- * @summary recibe un evento, tambien debe recibir a niveles y nivel actual;
- * esto cambia el nivel por un nivel selecionado por el usuario.
+ * @description cambia el nivel actual del juego al nivel seleccionado por el
+ * usuario
  *
- * @param {*} evento - toma el evento click en el boton creado con la clase
- * nivel.
+ *@function cambiaNivel *
+ * @param {Event} evento - el evento clic.
  */
 function cambiaNivel(evento) {
   console.log('cambiaNivel()');
@@ -176,9 +204,10 @@ function cambiaNivel(evento) {
 }
 
 /**
- * @summary esta funcion despliega el menu niveles cuando se salta un evento
- * @module niveles.js
- * @param {*} evento - evento click en el control de menu niveles.
+ * @description muestra el menu de seleccion de niveles
+ *
+ * @function muestraMenuNiveles
+ * @param {Event} evento - evento clic.
  */
 function muestraMenuNiveles(evento) {
   console.log('muestraMenuNIveles()');
@@ -187,30 +216,15 @@ function muestraMenuNiveles(evento) {
 }
 
 /**
- * @summary oculta el menu niveles quitando la clase
+ * @description oculta el menu niveles quitando la clase
+ *
+ * @function ocultaMenuNiveles
  */
 function ocultaMenuNiveles() {
   console.log('ocultaMenuNiveles()');
   document.querySelector('.selecciona-nivel').classList.remove('visible');
 }
 
-/**
- * @maneja el click fuera del menu niveles para cerrarlo si es necesario.
- * @param {*} evento
- * @returns
- */
-function clickFueraDelMenu(evento) {
-  if (evento.target.closest('selecciona-nivel')) {
-    return;
-  }
-  document.querySelector('.selecciona-nivel').classList.remove('visible');
-}
-
-function teclassEscCierraMenu(evento) {
-  if (evento.key === 'Escape') {
-    ocultaMenuNiveles();
-  }
-}
 // #region exports
 export {
   nivelesDelJuego,
@@ -221,6 +235,4 @@ export {
   cambiaNivel,
   arrayNiveles,
   cargaNuevoNivel,
-  clickFueraDelMenu,
-  teclassEscCierraMenu,
 };
