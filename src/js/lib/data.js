@@ -22,6 +22,7 @@ import {
  * En caso de errores durante la operacion de busqueda o el analisis de datos
  * la funcion retornara un mensaje de error descriptivo
  *
+ * @async
  * @function obtenerNumeroTotalPersonajes
  * @returns {Promise<number>} Una promesa que se resuelve con el numero total
  * de personajes (Un entero) si la operacion es exitosa.
@@ -59,6 +60,9 @@ async function obtenerNumeroTotalPersonajes() {
  * utilizando la funcion `obtenerNumeroTotalPersonajes`. Luego genera un numero
  * aleatorio entre 1 y el numero de personajes.utilizando la funcion
  * `Math.random()` y la funcion `Math.ceil()`. Devuelve un numero Entero
+ *
+ * @async
+ * @function numeroRandom
  *
  * @returns {Promise<number>} Una promesa que se resuelve con un numero
  * aleatorio entero entre 1 y el total de personajes.
