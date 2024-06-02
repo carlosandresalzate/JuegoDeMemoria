@@ -1,13 +1,24 @@
 /**
  * @file vista.js
+ * @description Archivo con funciones relacionadas con la vista de las tarjetas
+ * en el juego
  */
 
 // import { descubrir } from './functions.js';
 import { barajaTarjetas } from './generarGrupoTarjetas.js';
 
+/**
+ * @description Reparte las tarjetas de la mesa de juego
+ *
+ * Esta funcion baraja las tarjetas propocionadas y las coloca en el contenedor
+ * de la mesa de jugo. Cada tarjeta se representa como un div con una imagen
+ *
+ * @function reparteTarjetas
+ * @param {Array<Object>} lasTarjetas - las tarjetas a repartir en la mesa
+ * @return {Array<Object>} las tajetas barajadas
+ */
 function reparteTarjetas(lasTarjetas) {
-  console.log('reparteTarjetas(lasTarjetas)');
-  // console.log(lasTarjetas);
+  // console.log('reparteTarjetas(lasTarjetas)');
   const mesa = document.querySelector('#mesa');
   const tarjetasBarajadas = barajaTarjetas(lasTarjetas);
 
@@ -15,9 +26,6 @@ function reparteTarjetas(lasTarjetas) {
 
   tarjetasBarajadas.forEach((element) => {
     let tarjeta = document.createElement('div');
-    // const portal = document.createElement('img');
-    // portal.alt = '';
-    // portal.src = './imagenes/portal-rick-and-morty.gif';
 
     tarjeta.innerHTML = `
     <div class="tarjeta" data-valor="${element.id}">
@@ -26,21 +34,25 @@ function reparteTarjetas(lasTarjetas) {
     `;
 
     mesa.appendChild(tarjeta);
-    // tarjeta.appendChild(portal);
   });
   return tarjetasBarajadas;
 }
 
-// reparteTarjetas(niveles[nivelActual].tarjetas);
-
+/**
+ * @description Muestra las tarjetas en la mesa de juego segun el nivel actual
+ *
+ * Esta funcion obtien las tarjetas del nivel actual, las reparte en la mesa y
+ * baraja
+ *
+ * @function vistaTarjetasMesa
+ * @param {Array<Object>} niveles - los niveles de juego
+ * @param {number} nivelActual - el nivel actual del juego
+ * @return {Array<Object>} las tarjetas barajadas del nivel actual
+ */
 function vistaTarjetasMesa(niveles, nivelActual) {
-  console.log('vistaTarjetasMesa(niveles, nivelActual)');
-  // console.log('niveles: ', niveles);
+  // console.log('vistaTarjetasMesa(niveles, nivelActual)');
   const tarjetasBarajadas = reparteTarjetas(niveles);
-  // console.log('tarjetasBarajadas', tarjetasBarajadas);
   return tarjetasBarajadas;
-
-  // descubrir();
 }
 
 export { vistaTarjetasMesa };
