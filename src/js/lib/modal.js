@@ -1,17 +1,16 @@
 /**
  * @file modal.js
+ * @description Archivo con funciones relacionadas con la visualizacion de modales en el juego
  */
 
-import { pausarCronometro } from './cronometro.js';
 import { reiniciar } from './functions.js';
-// import { inicioJuego } from './inicio.js';
-import {
-  // actualizaNivel,
-  cargaNuevoNivel,
-  // escribeNiveles,
-  // nivelesDelJuego,
-} from './niveles.js';
+import { cargaNuevoNivel } from './niveles.js';
 
+/**
+ * @description Muestra un modal de game over cuando el jugador se queda sin
+ * movimimientos
+ * @function gameOver
+ */
 function gameOver() {
   console.log('gameOver()');
   // Aqui llamo a clearInterval para limpiar el cronomtro, aun no esta creada la variable
@@ -35,6 +34,10 @@ function gameOver() {
   });
 }
 
+/**
+ * @description Muestra un modal de time over cuando el jugador se queda sin tiempo
+ * @function timeOver
+ */
 function timeOver() {
   console.log('timeOver()');
   Swal.fire({
@@ -55,6 +58,11 @@ function timeOver() {
   });
 }
 
+/**
+ * @description Muestra un modal de end game cuando el jugador supera todos los
+ * niveles
+ * @function endGame
+ */
 function endGame() {
   Swal.fire({
     title: '¡Enhorabuena!',
@@ -75,6 +83,10 @@ function endGame() {
   });
 }
 
+/**
+ * @description Muestra un modal cuando el jugador sube de nivel
+ * @function modalSubeNivel
+ */
 function modalSubeNivel() {
   document.querySelector('#siguiente-nivel').play();
   Swal.fire({
