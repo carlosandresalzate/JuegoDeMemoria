@@ -1,5 +1,6 @@
 /**
  * @file cronometro.js
+ * @description Archivo con funciones relacionadas con el cronometro del juego
  */
 
 import { timeOver } from './modal.js';
@@ -10,6 +11,17 @@ let temporizador,
   segundosRestantes,
   estaPausado = false;
 
+/**
+ * @description Inicia el cronometro con el tiempo especificado.
+ *
+ * Esta funcion inicia una cuenta regresiva desde los minutos y segundos
+ * iniciales propocionados. Actualiza el DOM cada segundo y reproduce un sonido cuando quedan 5 segundos. Si el tiempo llega a cenro se llama a la funcion
+ * timeOver()
+ *
+ * @function iniciaCronometro
+ * @param {number} minutosIniciales - Los minutos del cronometro.
+ * @param {number} segundosIniciales - los segundos iniciales del cronometro
+ */
 function iniciaCronometro(minutosIniciales, segundosIniciales) {
   console.log('iniciaCronometro()');
 
@@ -51,6 +63,14 @@ function iniciaCronometro(minutosIniciales, segundosIniciales) {
   estaPausado = false;
 }
 
+/**
+ * @description Pausa el cronometro
+ *
+ * Esta funcion detiene el cronometro temporalmente
+ *
+ * @function pausarCronometro
+ * @return {boolean} El estado de pausa del cronometro.
+ */
 function pausarCronometro() {
   console.log('pausarCronometro()');
   clearInterval(temporizador);
@@ -58,20 +78,26 @@ function pausarCronometro() {
   return estaPausado;
 }
 
+/**
+ * @description Reanuda el cronometro
+ *
+ * Esta funtion cambia el estado del cronometro a no pausado.
+ *
+ * @function playCronometro
+ * @return {boolean} El estado de pausa del cronometro.
+ */
 function playCronometro() {
   estaPausado = false;
   return estaPausado;
 }
 
-// function detenerCronometro() {
-//   clearInterval(temporizador);
-//   minutosRestantes = 0;
-//   segundosRestantes = 0;
-//   document.querySelector('#minutos').innerText = '00';
-//   document.querySelector('#segundos').innertext = '00';
-//   estaPausado = false;
-// }
-
+/**
+ * @description Maneja el evento de tiempo terminado.
+ *
+ * Esta funcion se llama cuando el cronometro llega 0
+ *
+ * @function tiempoTerminado
+ */
 function tiempoTerminado() {
   timeOver();
 }
