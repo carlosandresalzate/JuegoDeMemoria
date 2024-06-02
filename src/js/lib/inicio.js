@@ -1,9 +1,9 @@
 /**
  * @file inicio.js
+ * @description Este archivo contiene la funcion para iniciar el juego
  */
-// import { AlmacenamientoJuego } from './clases.js';
+
 import { maxContador } from './contador.js';
-// import { controlesDeConfiguracion } from './controlCronometro.js';
 import {
   iniciaCronometro,
   pausarCronometro,
@@ -12,10 +12,8 @@ import {
   playCronometro,
 } from './cronometro.js';
 import {
-  animarLaOpacidad,
   clickFueraDelMenu,
   descubrir,
-  iniciaJuegoRelax,
   teclasEscCierraMenu,
 } from './functions.js';
 import {
@@ -35,8 +33,15 @@ import {
 import { vistaTarjetasMesa } from './vista.js';
 
 /**
+ * @description Inicia el juego el el modo especificado.
  *
- * @param {*} modoBool
+ * Esta funcion configura el estado inicial del juego, incluyendo el modo de
+ * juego, la distribucion de tarjetas, el contador de movimientos, el
+ * cronometro.
+ * Tambien añade los eventListeners necesario para la interaccion del usuario-
+ *
+ * @function inicioJuego
+ * @param {boolean} modoBool - inidica si el modo relajado esta activado
  */
 function inicioJuego(modoBool) {
   console.log('InicioJuego(modoBool)');
