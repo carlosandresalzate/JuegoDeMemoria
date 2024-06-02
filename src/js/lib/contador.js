@@ -1,16 +1,20 @@
 /**
  * @file contador.js
+ * @description Archivo con funciones relacionadas con la actualizacion del
+ * contador de movimientos en el juego
  */
 
 import { gameOver } from './modal.js';
 import { arrayNiveles } from './niveles.js';
 
 /**
- * @todo esta funcion deberia obtener  la cantidad de movimientos y
- * actualizarlos. esta variable esta declarada en inicioJuego.
- * Tambien se usan los niveles asi que debera saber que retorna niveles.movimientosMax y tambien si esta en modo relax o no.
- * @param {} - deveria recibir niveles.movimientosMax y modoRelax
- * @returns
+ * @description Actualiza el contador de movimientos del juego
+ *
+ * Esta funcion incrementa el contados de movimientos, actualiza el
+ * almacenamiento local y verifica si el jugador ha excedido el numero maximo de
+ * movimientos permitidos para el nuvel actual.
+ * Si se excede el numero maximo de movimientos y el modo relajado no esta activado se llama la funcion gameOver.
+ * @function actualizarContador
  */
 function actualizarContador() {
   console.log('actualizarContador()');
@@ -49,7 +53,16 @@ function actualizarContador() {
   document.querySelector('#mov').innerHTML = movimientosTexto;
 }
 
-// En esta funcion manejo la visual del contador de movimientos
+/**
+ * @description Muestra el numero maximo de movimientos permitidos en el nivel
+ * actual.
+ *
+ * Esta funcion actualiza el elemento DOM que muestra el numero maximo de movimientos permitidos.en el nivel actual del juego
+ *
+ * @function maxContador
+ * @param {Object} niveles - el objeto niveles de juego
+ * @param {number} nivelActual el nivel artual del juego.
+ */
 function maxContador(niveles, nivelActual) {
   console.log('maxContador(niveles, nivelActual)');
   let movimientosMaxTexto = niveles.movimientosMax;
