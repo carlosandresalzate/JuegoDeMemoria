@@ -4,7 +4,7 @@
  * llama baraja las tarjetas y las coloca en una posicion diferente del array
  * multidimensional..
  */
-console.log('file generarGrupoTarjetas');
+// console.log('file generarGrupoTarjetas');
 
 /**
  * @description Baraja un array utilizando el famoso algoritmo Fisher-Yates.
@@ -64,8 +64,8 @@ function barajaTarjetas(lasTarjetas) {
  *
  * @function distribuyePersonajesAleatorio
  * @param {Array} personajes - La lista de personajes recuperada de localStorage
- * @returns {Array} El array grupoTarjetas con los personajes distribuidos de
- * manera aleatorio(Barajados)
+ * @returns {Array<Array<Object>>} El array grupoTarjetas con los personajes
+ * distribuidos de manera aleatorio(Barajados)
  */
 function distribuyePersonajesAleatorio(personajes) {
   console.log('distribuyePersonajesAleatorio(personajes)');
