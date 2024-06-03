@@ -17,7 +17,7 @@ import { arrayNiveles } from './niveles.js';
  * @function actualizarContador
  */
 function actualizarContador() {
-  console.log('actualizarContador()');
+  // console.log('actualizarContador()');
 
   let informacionDelJuego = JSON.parse(
     localStorage.getItem('informacionDelJuego')
@@ -64,7 +64,7 @@ function actualizarContador() {
  * @param {number} nivelActual el nivel artual del juego.
  */
 function maxContador(niveles, nivelActual) {
-  console.log('maxContador(niveles, nivelActual)');
+  // console.log('maxContador(niveles, nivelActual)');
   let movimientosMaxTexto = niveles.movimientosMax;
 
   if (movimientosMaxTexto < 10) {

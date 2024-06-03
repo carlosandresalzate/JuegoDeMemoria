@@ -44,7 +44,7 @@ import { vistaTarjetasMesa } from './vista.js';
  * @param {boolean} modoBool - inidica si el modo relajado esta activado
  */
 function inicioJuego(modoBool) {
-  console.log('InicioJuego(modoBool)');
+  // console.log('InicioJuego(modoBool)');
 
   if (pausarCronometro()) {
     playCronometro();
@@ -101,7 +101,7 @@ function inicioJuego(modoBool) {
   actualizaNivel();
 
   if (!modoRelax) {
-    console.log('if !modoRelax', modoRelax);
+    // console.log('if !modoRelax', modoRelax);
     minutos.innerText = '00';
     segundos.innerText = '00';
 
@@ -127,7 +127,7 @@ function inicioJuego(modoBool) {
       }
     });
   } else {
-    console.log('else modoRelax', modoRelax);
+    // console.log('else modoRelax', modoRelax);
     document.querySelector('#cronometro').classList.add('cronometro-oculto');
   }
 }

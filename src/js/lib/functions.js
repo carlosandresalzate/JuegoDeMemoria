@@ -17,7 +17,7 @@ import { arrayNiveles, ocultaMenuNiveles } from './niveles.js';
  * @returns {?*} El valor almacenado en localStorage o null si no existe
  */
 function obtieneCache(value) {
-  console.log('obtieneCache(key)');
+  // console.log('obtieneCache(key)');
 
   let personajes = JSON.parse(value);
   return personajes;
@@ -31,7 +31,7 @@ function obtieneCache(value) {
  * @global
  */
 function finalizar() {
-  console.log('finalizar()');
+  // console.log('finalizar()');
   pausarCronometro();
 
   let informacionDelJuego = JSON.parse(
@@ -56,7 +56,7 @@ function finalizar() {
  * @returns
  */
 function descubrir() {
-  console.log('descubrir()');
+  // console.log('descubrir()');
   let descubiertas;
   let tarjetasPendientes;
   let totalDescubiertas = document.querySelectorAll(
@@ -94,7 +94,7 @@ function descubrir() {
  * @param {NodeList} tarjetasAComparar -lasTarjetas que se estan comparando.
  */
 function comparar(tarjetasAComparar) {
-  console.log('comparar(tarjetasAComparar)');
+  // console.log('comparar(tarjetasAComparar)');
   if (
     tarjetasAComparar[0].dataset.valor === tarjetasAComparar[1].dataset.valor
   ) {
@@ -109,8 +109,8 @@ function comparar(tarjetasAComparar) {
  * @param {NodeList} lasTarjetas las tarjetas que son un par acertado
  */
 function acierto(lasTarjetas) {
-  console.log('acierto(lasTarjetas)');
-  console.log(lasTarjetas[0].dataset.valor);
+  // console.log('acierto(lasTarjetas)');
+  // console.log(lasTarjetas[0].dataset.valor);
   /* Este if no esta definido, aun falta diseño */
   // if(lasTarjetas[0].dataset.valor === 1) {
   //   // aqui debo pausar el tiempo, mostrar una modal con un rick sanchez bailando, esa idea aun se debe trabajar.
@@ -130,7 +130,7 @@ function acierto(lasTarjetas) {
  * @param {NodeList} lasTarjetas - las tarjetas que no son par
  */
 function error(lasTarjetas) {
-  console.log('error(lasTarjetas)');
+  // console.log('error(lasTarjetas)');
   lasTarjetas.forEach((element) => {
     element.classList.add('error');
   });
@@ -138,7 +138,7 @@ function error(lasTarjetas) {
   document.querySelector('#sonido-error').play();
   // elimina la clase descubierta y error despues de un segundo
   setTimeout(function () {
-    console.log('setTimeout()');
+    // console.log('setTimeout()');
     lasTarjetas.forEach((element) => {
       element.classList.remove('descubierta');
       element.classList.remove('error');
@@ -154,7 +154,7 @@ function error(lasTarjetas) {
  *
  */
 function reiniciar() {
-  console.log('reiniciar()');
+  // console.log('reiniciar()');
   let informacionDelJuego = JSON.parse(
     localStorage.getItem('informacionDelJuego')
   );
@@ -170,7 +170,7 @@ function reiniciar() {
  * @param {boolean} modoRelax - indica si el modo relajado esta activo
  */
 function iniciaJuegoNormal(modoRelax) {
-  console.log('iniciaJuegoNormal', modoRelax);
+  // console.log('iniciaJuegoNormal', modoRelax);
   document.querySelector('.cabecera').style.display = 'flex';
   document.querySelector('main').style.display = 'flex';
   inicioJuego(modoRelax);
@@ -183,7 +183,7 @@ function iniciaJuegoNormal(modoRelax) {
  * @param {boolean} modoRelax - indica si el modo relajado  esta activo
  */
 function iniciaJuegoRelax(modoRelax) {
-  console.log('inciaJuegoRelax', modoRelax);
+  // console.log('inciaJuegoRelax', modoRelax);
   document.querySelector('.cabecera').style.display = 'flex';
   document.querySelector('main').style.display = 'flex';
   document.querySelector('.btn-switch').style.display = 'none';

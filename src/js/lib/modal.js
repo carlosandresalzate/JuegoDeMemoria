@@ -12,7 +12,7 @@ import { cargaNuevoNivel } from './niveles.js';
  * @function gameOver
  */
 function gameOver() {
-  console.log('gameOver()');
+  // console.log('gameOver()');
   // Aqui llamo a clearInterval para limpiar el cronomtro, aun no esta creada la variable
 
   // el modal puede tener fondo(background), otro icono o los que tiene por defecto y muchas mas cosas.
@@ -26,9 +26,9 @@ function gameOver() {
     confirmButtonColor: '#e94057',
     allowOutsideClick: false,
   }).then((result) => {
-    console.log(result);
+    // console.log(result);
     if (result.isConfirmed) {
-      console.log('gameOver');
+      // console.log('gameOver');
       reiniciar();
     }
   });
@@ -39,7 +39,7 @@ function gameOver() {
  * @function timeOver
  */
 function timeOver() {
-  console.log('timeOver()');
+  // console.log('timeOver()');
   Swal.fire({
     title: '¡Oh no!',
     icon: 'error',
@@ -50,9 +50,9 @@ function timeOver() {
     confirmButtonColor: '#e94057',
     allowOutsideClick: false,
   }).then((result) => {
-    console.log(result);
+    // console.log(result);
     if (result.isConfirmed) {
-      console.log('timeOver');
+      // console.log('timeOver');
       reiniciar();
     }
   });
@@ -74,9 +74,9 @@ function endGame() {
     confirmButtonColor: 'green', // Agregar un buen color al boton de fin del juego
     allowOutsideClick: false,
   }).then((result) => {
-    console.log(result);
+    // console.log(result);
     if (result.isConfirmed) {
-      console.log('endGame');
+      // console.log('endGame');
       // hay que agregar algo para que muestre varias opciones como: volver al valver al inicio y elegir nivel o reiniciar nivel(este ya existe)
       reiniciar();
     }
@@ -102,9 +102,9 @@ function modalSubeNivel() {
     denyButtonColor: '#e94057',
     allowOutsideClick: false,
   }).then((result) => {
-    console.log(result);
+    // console.log(result);
     if (result.isConfirmed) {
-      console.log('result.isConfirmed');
+      // console.log('result.isConfirmed');
       document.querySelector('#continuar').play();
       cargaNuevoNivel();
     } else if (result.isDenied) {

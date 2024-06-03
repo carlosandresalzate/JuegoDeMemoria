@@ -158,7 +158,7 @@ async function numeroRandom() {
  * funcion.
  */
 async function obtenerPersonajes(number, obtenidos = [], idsSet = new Set()) {
-  console.log('obtenerPersonajes(number, obtenidos = [], idsSet = new Set())');
+  // console.log('obtenerPersonajes(number, obtenidos = [], idsSet = new Set())');
   try {
     if (obtenidos.length === number) {
       return obtenidos;
@@ -172,7 +172,7 @@ async function obtenerPersonajes(number, obtenidos = [], idsSet = new Set()) {
       }
 
       idsSet.add(RandomId);
-      console.log('idsSet', idsSet);
+      // console.log('idsSet', idsSet);
 
       const response = await fetch(`${URL}/character/${RandomId}`);
 
@@ -202,7 +202,7 @@ async function obtenerPersonajes(number, obtenidos = [], idsSet = new Set()) {
       console.error('Error inesperado al obtener personaje: ', error);
     }
   }
-  console.log('obtenidos fuera for:', obtenidos);
+  // console.log('obtenidos fuera for:', obtenidos);
   return obtenidos;
 }
 
@@ -223,7 +223,7 @@ async function obtenerPersonajes(number, obtenidos = [], idsSet = new Set()) {
  * de los personajes.
  */
 async function guardarPersonajesEnCache() {
-  console.log('guardarPersonajesEnCache()');
+  // console.log('guardarPersonajesEnCache()');
   const userAgent = navigator.userAgent;
 
   const isChrome = /Chrome/i.test(userAgent);
@@ -234,11 +234,11 @@ async function guardarPersonajesEnCache() {
   if (isChrome || isFirefox || isEdge || isSafari) {
     const cacheKey = 'grupoTarjetas';
     let cacheTarjetas = JSON.parse(localStorage.getItem(cacheKey)) || [];
-    console.log(localStorage.length);
+    // console.log(localStorage.length);
     if (cacheTarjetas.length <= 0) {
       const arrayTarjetas = await obtenerPersonajes(16);
 
-      console.log('arrayTarjetas', arrayTarjetas);
+      // console.log('arrayTarjetas', arrayTarjetas);
       cacheTarjetas.push(...arrayTarjetas);
 
       localStorage.setItem(cacheKey, JSON.stringify(cacheTarjetas));

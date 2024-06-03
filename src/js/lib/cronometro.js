@@ -23,7 +23,7 @@ let temporizador,
  * @param {number} segundosIniciales - los segundos iniciales del cronometro
  */
 function iniciaCronometro(minutosIniciales, segundosIniciales) {
-  console.log('iniciaCronometro()');
+  // console.log('iniciaCronometro()');
 
   if (!estaPausado) {
     minutosRestantes = minutosIniciales;
@@ -72,7 +72,7 @@ function iniciaCronometro(minutosIniciales, segundosIniciales) {
  * @return {boolean} El estado de pausa del cronometro.
  */
 function pausarCronometro() {
-  console.log('pausarCronometro()');
+  // console.log('pausarCronometro()');
   clearInterval(temporizador);
   estaPausado = true;
   return estaPausado;

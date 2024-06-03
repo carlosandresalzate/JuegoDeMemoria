@@ -62,7 +62,7 @@ function arrayNiveles(grupoTarjetas) {
  * @returns {Object} el objeto del nivel actual
  */
 function nivelesDelJuego(grupoTarjetas, nivelActual) {
-  console.log('nivelesDelJuego(grupoTarjetas, nivelActual)');
+  // console.log('nivelesDelJuego(grupoTarjetas, nivelActual)');
   const niveles = arrayNiveles(grupoTarjetas);
 
   return niveles[nivelActual];
@@ -74,7 +74,7 @@ function nivelesDelJuego(grupoTarjetas, nivelActual) {
  * @function subeNivel
  */
 function subeNivel() {
-  console.log('subeNivel()');
+  // console.log('subeNivel()');
   let informacionDelJuego = JSON.parse(
     localStorage.getItem('informacionDelJuego')
   );
@@ -94,7 +94,7 @@ function subeNivel() {
  * @function actualizaNivel
  */
 function actualizaNivel() {
-  console.log('actualizaNivel()');
+  // console.log('actualizaNivel()');
 
   let informacionDelJuego = JSON.parse(
     localStorage.getItem('informacionDelJuego')
@@ -123,7 +123,7 @@ function actualizaNivel() {
  * @function cargaNuevoNivel
  */
 function cargaNuevoNivel() {
-  console.log('cargaNuevoNivel()');
+  // console.log('cargaNuevoNivel()');
 
   subeNivel();
   actualizaNivel();
@@ -150,7 +150,7 @@ function cargaNuevoNivel() {
  * @param {Array<Object>} niveles - los niveles del juego
  */
 function escribeNiveles(niveles) {
-  console.log('escribeNiveles(niveles)');
+  // console.log('escribeNiveles(niveles)');
 
   let menuNiveles = document.querySelector('.selecciona-nivel ul');
 
@@ -173,7 +173,7 @@ function escribeNiveles(niveles) {
  * @param {Event} evento - el evento clic.
  */
 function cambiaNivel(evento) {
-  console.log('cambiaNivel()');
+  // console.log('cambiaNivel()');
   evento.stopPropagation();
 
   let nivel = parseInt(this.dataset.nivel);
@@ -210,7 +210,7 @@ function cambiaNivel(evento) {
  * @param {Event} evento - evento clic.
  */
 function muestraMenuNiveles(evento) {
-  console.log('muestraMenuNIveles()');
+  // console.log('muestraMenuNIveles()');
   evento.stopPropagation();
   document.querySelector('.selecciona-nivel').classList.toggle('visible');
 }
@@ -221,7 +221,7 @@ function muestraMenuNiveles(evento) {
  * @function ocultaMenuNiveles
  */
 function ocultaMenuNiveles() {
-  console.log('ocultaMenuNiveles()');
+  // console.log('ocultaMenuNiveles()');
   document.querySelector('.selecciona-nivel').classList.remove('visible');
 }
 

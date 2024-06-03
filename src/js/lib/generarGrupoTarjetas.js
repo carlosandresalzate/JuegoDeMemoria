@@ -14,7 +14,7 @@
  * @returns {Array} El array Barajado.
  */
 function arrayAleatorio(array) {
-  console.log('arrayAleatorio(array)');
+  // console.log('arrayAleatorio(array)');
   let indiceActual = array.length;
   let valorTemporal, indiceRandom;
 
@@ -38,7 +38,7 @@ function arrayAleatorio(array) {
  * @returns {Array<Object>} Un array con los objetos Tarjetas barajados
  */
 function barajaTarjetas(lasTarjetas) {
-  console.log('barajaTarjetas(lasTarjetas)');
+  // console.log('barajaTarjetas(lasTarjetas)');
 
   const tarjetas = lasTarjetas.tarjetas;
 
@@ -68,7 +68,7 @@ function barajaTarjetas(lasTarjetas) {
  * distribuidos de manera aleatorio(Barajados)
  */
 function distribuyePersonajesAleatorio(personajes) {
-  console.log('distribuyePersonajesAleatorio(personajes)');
+  // console.log('distribuyePersonajesAleatorio(personajes)');
   if (!Array.isArray(personajes)) {
     // console.error('Se esperaban exactamente 16 personajes.');
     return [];

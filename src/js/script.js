@@ -5,7 +5,7 @@
  * @version 1.0
  * @license MIT
  */
-console.log('Archivo script.js');
+// console.log('Archivo script.js');
 
 // #region imports
 import { guardarPersonajesEnCache } from './lib/data.js';
@@ -27,7 +27,7 @@ const isSafari = /Safari/i.test(userAgent);
 
 // #region carga del DOM
 document.addEventListener('DOMContentLoaded', async (e) => {
-  console.log('DOMContentLoaded');
+  // console.log('DOMContentLoaded');
 
   let storage = localStorage.getItem(cacheKey);
   let counter = 5;
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
   }
 
   if (isChrome || isFirefox || isEdge || isSafari) {
-    console.log('comprobarChache()');
+    // console.log('comprobarChache()');
     await comprobarChache();
 
     const cacheTarjetas = obtieneCache(storage);
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
       backdrop: `white url('./src/imagenes/rick-and-morty-cartoon-network.gif') left top/250px no-repeat`,
     }).then((result) => {
       // console.log(result);
-      console.log('inicias Swal.fire');
+      // console.log('inicias Swal.fire');
       if (result.isDismissed) {
         // console.log('Modo Relax', result.isDismissed);
 
