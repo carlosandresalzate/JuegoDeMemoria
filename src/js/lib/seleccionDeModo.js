@@ -1,0 +1,4 @@
+/**
+ * @file seleccionDeModo.js
+ * @description
+ */
