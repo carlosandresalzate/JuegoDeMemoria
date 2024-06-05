@@ -3,10 +3,24 @@
  * @description Archivo con funciones para utilidades varias.
  */
 import { actualizarContador } from './contador.js';
-import { pausarCronometro } from './cronometro.js';
+import {
+  iniciaCronometro,
+  minutosRestantes,
+  pausarCronometro,
+  playCronometro,
+  segundosRestantes,
+} from './cronometro.js';
 import { inicioJuego } from './inicio.js';
 import { endGame, modalSubeNivel } from './modal.js';
 import { arrayNiveles, ocultaMenuNiveles } from './niveles.js';
+import { playPause } from './playPause.js';
+import {
+  btnPause,
+  btnPlay,
+  btnSwitch,
+  minutos,
+  segundos,
+} from './variables.js';
 
 /**
  * @description Recupera el valor alamacenado en localStorage usando la clave
@@ -170,9 +184,44 @@ function reiniciar() {
  * @param {boolean} modoRelax - indica si el modo relajado esta activo
  */
 function iniciaJuegoNormal(modoRelax) {
-  // console.log('iniciaJuegoNormal', modoRelax);
+  console.log('iniciaJuegoNormal', modoRelax);
   document.querySelector('.cabecera').style.display = 'flex';
   document.querySelector('main').style.display = 'flex';
+  document.querySelector('.btn-switch').style.display = 'flex';
+  document.querySelector('#cronometro').classList.remove('cronometro-oculto');
+
+  console.log('agrego 00 a minutos y segundos');
+  minutos.innerText = '00';
+  segundos.innerText = '00';
+
+  playPause();
+
+  const tiempo = {
+    minutos: 0,
+    segundos: 8,
+  };
+
+  iniciaCronometro(tiempo.minutos, tiempo.segundos);
+
+  // if (btnPlay.classList.contains('btn-visible')) {
+  //   pausarCronometro();
+  // }
+
+  // btnPause.style.display = 'block';
+  // btnPlay.style.display = 'none';
+
+  // btnSwitch.addEventListener('click', () => {
+  //   if (btnPlay.style.display === 'none') {
+  //     btnPlay.style.display = 'block';
+  //     btnPause.style.display = 'none';
+  //     pausarCronometro();
+  //   } else if (btnPlay.style.display === 'block') {
+  //     btnPlay.style.display = 'none';
+  //     btnPause.style.display = 'block';
+  //     iniciaCronometro(minutosRestantes, segundosRestantes);
+  //   }
+  // });
+  // playCronometro();
   inicioJuego(modoRelax);
 }
 
@@ -183,10 +232,11 @@ function iniciaJuegoNormal(modoRelax) {
  * @param {boolean} modoRelax - indica si el modo relajado  esta activo
  */
 function iniciaJuegoRelax(modoRelax) {
-  // console.log('inciaJuegoRelax', modoRelax);
+  console.log('inciaJuegoRelax', modoRelax);
   document.querySelector('.cabecera').style.display = 'flex';
   document.querySelector('main').style.display = 'flex';
   document.querySelector('.btn-switch').style.display = 'none';
+  document.querySelector('#cronometro').classList.add('cronometro-oculto');
   inicioJuego(modoRelax);
 }
 

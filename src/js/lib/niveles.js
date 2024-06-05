@@ -134,11 +134,12 @@ function cargaNuevoNivel() {
 
   let modoRelax = informacionDelJuego.modoRelax;
   let nivelActual = informacionDelJuego.nivelActual;
-  if (pausarCronometro()) {
-    playCronometro();
-  }
+  // if (pausarCronometro()) {
+  //   playCronometro();
+  // }
 
   nivelesDelJuego(informacionDelJuego.grupoTarjetas, nivelActual);
+
   inicioJuego(modoRelax);
 }
 

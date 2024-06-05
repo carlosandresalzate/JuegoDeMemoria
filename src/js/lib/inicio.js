@@ -16,6 +16,7 @@ import {
   descubrir,
   teclasEscCierraMenu,
 } from './functions.js';
+import { modalSeleccionDeModo } from './modal.js';
 import {
   actualizaNivel,
   nivelesDelJuego,
@@ -23,11 +24,13 @@ import {
   ocultaMenuNiveles,
   cambiaNivel,
 } from './niveles.js';
+import { playPause } from './playPause.js';
 import {
   btnPause,
   btnPlay,
   btnSwitch,
   movimientos,
+  minutos,
   segundos,
 } from './variables.js';
 import { vistaTarjetasMesa } from './vista.js';
@@ -44,12 +47,15 @@ import { vistaTarjetasMesa } from './vista.js';
  * @param {boolean} modoBool - inidica si el modo relajado esta activado
  */
 function inicioJuego(modoBool) {
-  // console.log('InicioJuego(modoBool)');
-
-  if (pausarCronometro()) {
-    playCronometro();
+  console.log('InicioJuego(modoBool)');
+  // el juego esta en false
+  if (!modoBool) {
+    console.log('entra en !modoBool y agrega minutos y segundos a cero');
+    minutos.innerText = '00';
+    segundos.innerText = '00';
   }
 
+  console.log('Carga storage');
   let informacionDelJuego = JSON.parse(
     localStorage.getItem('informacionDelJuego')
   );
@@ -83,7 +89,7 @@ function inicioJuego(modoBool) {
 
   vistaTarjetasMesa(niveles, nivelActual);
 
-  document.querySelector('#mov').innerText = '00';
+  // document.querySelector('#mov').innerText = '00';
 
   maxContador(niveles, nivelActual);
 
@@ -94,42 +100,48 @@ function inicioJuego(modoBool) {
     element.addEventListener('click', descubrir);
   });
 
+  document
+    .querySelector('.selecciona-modo')
+    .addEventListener('click', modalSeleccionDeModo);
+
   localStorage.setItem(
     'informacionDelJuego',
     JSON.stringify(informacionDelJuego)
   );
+
   actualizaNivel();
+  // playPause();
+  // if (pausarCronometro() && !modoBool) {
+  //   console.log('playCronometro()');
+  //   minutos.innerText = '00';
+  //   segundos.innerText = '00';
 
-  if (!modoRelax) {
-    // console.log('if !modoRelax', modoRelax);
-    minutos.innerText = '00';
-    segundos.innerText = '00';
+  //   const tiempo = {
+  //     minutos: 0,
+  //     segundos: 8,
+  //   };
 
-    const tiempo = {
-      minutos: 0,
-      segundos: 8,
-    };
+  //   iniciaCronometro(tiempo.minutos, tiempo.segundos);
 
-    iniciaCronometro(tiempo.minutos, tiempo.segundos);
+  //   btnPause.style.display = 'block';
+  //   btnPlay.style.display = 'none';
 
-    btnPause.style.display = 'block';
-    btnPlay.style.display = 'none';
-
-    btnSwitch.addEventListener('click', () => {
-      if (btnPlay.style.display === 'none') {
-        btnPlay.style.display = 'block';
-        btnPause.style.display = 'none';
-        pausarCronometro();
-      } else if (btnPlay.style.display === 'block') {
-        iniciaCronometro(minutosRestantes, segundosRestantes);
-        btnPlay.style.display = 'none';
-        btnPause.style.display = 'block';
-      }
-    });
-  } else {
-    // console.log('else modoRelax', modoRelax);
-    document.querySelector('#cronometro').classList.add('cronometro-oculto');
-  }
+  //   btnSwitch.addEventListener('click', () => {
+  //     if (btnPlay.style.display === 'none') {
+  //       btnPlay.style.display = 'block';
+  //       btnPause.style.display = 'none';
+  //       pausarCronometro();
+  //     } else if (btnPlay.style.display === 'block') {
+  //       btnPlay.style.display = 'none';
+  //       btnPause.style.display = 'block';
+  //       iniciaCronometro(minutosRestantes, segundosRestantes);
+  //     }
+  //   });
+  //   playCronometro();
+  // } else {
+  //   console.log('inicia modoRelax', modoRelax);
+  //
+  // }
 }
 
 export { inicioJuego };

@@ -3,8 +3,21 @@
  * @description Archivo con funciones relacionadas con la visualizacion de modales en el juego
  */
 
-import { reiniciar } from './functions.js';
+import {
+  borrarCronometro,
+  iniciaCronometro,
+  pausarCronometro,
+} from './cronometro.js';
+import { iniciaJuegoNormal, iniciaJuegoRelax, reiniciar } from './functions.js';
 import { cargaNuevoNivel } from './niveles.js';
+import { playPause } from './playPause.js';
+import { seleccionDeModo } from './seleccionDeModo.js';
+import {
+  btnSwitch,
+  cacheKey,
+  movimientos,
+  nivelDeInicio,
+} from './variables.js';
 
 /**
  * @description Muestra un modal de game over cuando el jugador se queda sin
@@ -88,6 +101,7 @@ function endGame() {
  * @function modalSubeNivel
  */
 function modalSubeNivel() {
+  console.log('modalSubeNivel()');
   document.querySelector('#siguiente-nivel').play();
   Swal.fire({
     title: '¡Muy Bien!',
@@ -104,7 +118,7 @@ function modalSubeNivel() {
   }).then((result) => {
     // console.log(result);
     if (result.isConfirmed) {
-      // console.log('result.isConfirmed');
+      console.log('boton Continuar al siguiente nivel');
       document.querySelector('#continuar').play();
       cargaNuevoNivel();
     } else if (result.isDenied) {
@@ -114,4 +128,30 @@ function modalSubeNivel() {
   });
 }
 
-export { gameOver, timeOver, endGame, modalSubeNivel };
+function modalSeleccionDeModo() {
+  console.log('modalSeleccionDeModo()');
+  Swal.fire({
+    title: 'Selecciona modo de juego 🎮',
+    confirmButtonText: 'Juego Normal ⏳',
+    confirmButtonColor: 'green',
+    showCancelButton: true,
+    cancelButtonText: 'Modo Relax 😇',
+    cancelButtonColor: 'green',
+    allowOutsideClick: false,
+    allowEnterKey: false,
+    allowEscapeKey: false,
+    position: 'top',
+  }).then((result) => {
+    console.log(result);
+
+    if (result.isDismissed) {
+      iniciaJuegoRelax(true);
+    } else if (result.isConfirmed) {
+      btnSwitch.addEventListener('click', playPause);
+      borrarCronometro();
+      iniciaJuegoNormal(false);
+    }
+  });
+}
+
+export { gameOver, timeOver, endGame, modalSubeNivel, modalSeleccionDeModo };

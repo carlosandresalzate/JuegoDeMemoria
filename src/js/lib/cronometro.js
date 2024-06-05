@@ -87,8 +87,18 @@ function pausarCronometro() {
  * @return {boolean} El estado de pausa del cronometro.
  */
 function playCronometro() {
+  iniciaCronometro(minutosRestantes, segundosRestantes);
   estaPausado = false;
   return estaPausado;
+}
+
+function borrarCronometro() {
+  console.log('borrarCronometro()');
+  console.log('temoporizador', temporizador);
+  console.log('inicia clearInterval');
+  clearInterval(temporizador);
+  console.log('temoporizador', temporizador);
+  return;
 }
 
 /**
@@ -106,6 +116,7 @@ export {
   iniciaCronometro,
   pausarCronometro,
   playCronometro,
+  borrarCronometro,
   minutosRestantes,
   segundosRestantes,
 };

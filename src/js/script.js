@@ -92,29 +92,25 @@ document.addEventListener('DOMContentLoaded', async (e) => {
       width: '100%',
       heightAuto: false,
       backdrop: 'white',
-      title: '👋 ¡Hola! 👋',
+      title: '👋 ¡Hola 🎮! 👋',
       text: 'Bienvenido al juego de Rick And Morty',
       imageUrl: './src/imagenes/rick-and-morty-start.png',
       imageAlt: 'Sombras de Rick and Morty',
       // iconColor: '#f27121' el icono es verde,
-      confirmButtonText: 'Juego Normal',
+      confirmButtonText: 'Juego Normal ⏳',
       confirmButtonColor: 'green', // Agregar un buen color al boton de fin del juego
       showCancelButton: true,
       cancelButtonColor: 'green',
-      cancelButtonText: 'Modo Relax',
+      cancelButtonText: 'Modo Relax 😇',
       allowOutsideClick: false,
       allowEnterKey: false,
       allowEscapeKey: false,
       backdrop: `white url('./src/imagenes/rick-and-morty-cartoon-network.gif') left top/250px no-repeat`,
     }).then((result) => {
-      // console.log(result);
-      // console.log('inicias Swal.fire');
       if (result.isDismissed) {
-        // console.log('Modo Relax', result.isDismissed);
-
         iniciaJuegoRelax(true);
       } else if (result.isConfirmed) {
-        // console.log('Juego Normal', result.isConfirmed);
+        console.log('primer inicio del juego en false');
         iniciaJuegoNormal(false);
       }
     });

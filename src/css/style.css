@@ -214,13 +214,20 @@ button:focus,
 }
 
 .btn-play {
-	display: none;
+	/* display: none; */
 	fill: white;
 }
 
 .btn-pause {
-	display: block;
+	/* display: block; */
 	fill: white;
+}
+
+.btn-hidden {
+	display: none;
+}
+.btn-visible {
+	display: block;
 }
 
 .modal .reiniciar {
