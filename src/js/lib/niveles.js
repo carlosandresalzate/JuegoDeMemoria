@@ -3,11 +3,9 @@
  * @description Archivo con funciones relacionadas con los niveles del juego
  */
 
-// import { detenerCronometro } from './cronometro.js';
-import { pausarCronometro, playCronometro } from './cronometro.js';
 import { obtieneCache } from './functions.js';
 import { distribuyePersonajesAleatorio } from './generarGrupoTarjetas.js';
-import { inicioJuego } from './inicio.js';
+import { iniciaJuego } from './inicio.js';
 import { cacheKey } from './variables.js';
 
 /**
@@ -23,14 +21,26 @@ function arrayNiveles(grupoTarjetas) {
     {
       tarjetas: grupoTarjetas[0],
       movimientosMax: 3,
+      tiempo: {
+        minutos: 0,
+        segundos: 10,
+      },
     },
     {
       tarjetas: grupoTarjetas[0].concat(grupoTarjetas[1]),
       movimientosMax: 8,
+      tiempo: {
+        minutos: 0,
+        segundos: 10,
+      },
     },
     {
       tarjetas: grupoTarjetas[0].concat(grupoTarjetas[1], grupoTarjetas[2]),
       movimientosMax: 12,
+      tiempo: {
+        minutos: 0,
+        segundos: 10,
+      },
     },
     {
       tarjetas: grupoTarjetas[0].concat(
@@ -39,6 +49,10 @@ function arrayNiveles(grupoTarjetas) {
         grupoTarjetas[3]
       ),
       movimientosMax: 25,
+      tiempo: {
+        minutos: 0,
+        segundos: 10,
+      },
     },
     {
       tarjetas: grupoTarjetas[0].concat(
@@ -48,6 +62,10 @@ function arrayNiveles(grupoTarjetas) {
         grupoTarjetas[4]
       ),
       movimientosMax: 60,
+      tiempo: {
+        minutos: 0,
+        segundos: 10,
+      },
     },
   ];
   return niveles;
@@ -134,13 +152,10 @@ function cargaNuevoNivel() {
 
   let modoRelax = informacionDelJuego.modoRelax;
   let nivelActual = informacionDelJuego.nivelActual;
-  // if (pausarCronometro()) {
-  //   playCronometro();
-  // }
 
   nivelesDelJuego(informacionDelJuego.grupoTarjetas, nivelActual);
 
-  inicioJuego(modoRelax);
+  iniciaJuego(modoRelax);
 }
 
 /**
@@ -200,7 +215,7 @@ function cambiaNivel(evento) {
 
   if (nivel >= 0 && nivel < arrayNiveles(grupoTarjetas).length) {
     actualizaNivel(nivelActual);
-    inicioJuego(modoRelax);
+    iniciaJuego(modoRelax);
   }
 }
 
@@ -226,6 +241,27 @@ function ocultaMenuNiveles() {
   document.querySelector('.selecciona-nivel').classList.remove('visible');
 }
 
+/**
+ * @description cierra el menu niveles cuando se hace clic fuera del contenedor
+ *
+ * @function clickFueraDelMenu
+ * @param {Event} evento  - evento del clic
+ */
+function clickFueraDelMenu(evento) {
+  if (evento.target.closest('.selecciona-nivel')) return;
+  document.querySelector('.selecciona-nivel').classList.remove('visible');
+}
+
+/**
+ * @description cierra el menu de niveles cuando se presiona la tecla Escape
+ *
+ * @function teclasEscCierraMenu
+ * @param {evento} evento - el evento del teclado
+ */
+function teclasEscCierraMenu(evento) {
+  if (evento.key === 'Escape') ocultaMenuNiveles();
+}
+
 // #region exports
 export {
   nivelesDelJuego,
@@ -236,4 +272,6 @@ export {
   cambiaNivel,
   arrayNiveles,
   cargaNuevoNivel,
+  clickFueraDelMenu,
+  teclasEscCierraMenu,
 };

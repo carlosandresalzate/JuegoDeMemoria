@@ -9,14 +9,13 @@
 
 // #region imports
 import { guardarPersonajesEnCache } from './lib/data.js';
-import {
-  iniciaJuegoNormal,
-  iniciaJuegoRelax,
-  obtieneCache,
-} from './lib/functions.js';
+import { obtieneCache } from './lib/functions.js';
 import { distribuyePersonajesAleatorio } from './lib/generarGrupoTarjetas.js';
 import { arrayNiveles, escribeNiveles } from './lib/niveles.js';
 import { nivelDeInicio, cacheKey, movimientos } from './lib/variables.js';
+
+/* -- */
+import { iniciaJuego } from './lib/inicio.js';
 
 // #region navigator.userAgent
 const userAgent = navigator.userAgent;
@@ -86,6 +85,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     );
 
     const niveles = arrayNiveles(tarjetas);
+
     escribeNiveles(niveles);
 
     Swal.fire({
@@ -107,11 +107,10 @@ document.addEventListener('DOMContentLoaded', async (e) => {
       allowEscapeKey: false,
       backdrop: `white url('./src/imagenes/rick-and-morty-cartoon-network.gif') left top/250px no-repeat`,
     }).then((result) => {
-      if (result.isDismissed) {
-        iniciaJuegoRelax(true);
-      } else if (result.isConfirmed) {
-        console.log('primer inicio del juego en false');
-        iniciaJuegoNormal(false);
+      if (result.isConfirmed) {
+        iniciaJuego(false);
+      } else if (result.isDismissed) {
+        iniciaJuego(true);
       }
     });
   }

@@ -2,25 +2,12 @@
  * @file functions.js
  * @description Archivo con funciones para utilidades varias.
  */
+
 import { actualizarContador } from './contador.js';
-import {
-  iniciaCronometro,
-  minutosRestantes,
-  pausarCronometro,
-  playCronometro,
-  segundosRestantes,
-} from './cronometro.js';
-import { inicioJuego } from './inicio.js';
+import { obtenerDatosJuego } from './localStorage.js';
+import { iniciaJuego } from './inicio.js';
 import { endGame, modalSubeNivel } from './modal.js';
-import { arrayNiveles, ocultaMenuNiveles } from './niveles.js';
-import { playPause } from './playPause.js';
-import {
-  btnPause,
-  btnPlay,
-  btnSwitch,
-  minutos,
-  segundos,
-} from './variables.js';
+import { arrayNiveles } from './niveles.js';
 
 /**
  * @description Recupera el valor alamacenado en localStorage usando la clave
@@ -36,32 +23,6 @@ function obtieneCache(value) {
   let personajes = JSON.parse(value);
   return personajes;
 }
-
-/**
- * @description Finaliza el juego pausando el cronometro y mostrando  el modal
- * correspondiente
- *
- * @function finalizar
- * @global
- */
-function finalizar() {
-  // console.log('finalizar()');
-  pausarCronometro();
-
-  let informacionDelJuego = JSON.parse(
-    localStorage.getItem('informacionDelJuego')
-  );
-  let nivelActual = informacionDelJuego.nivelActual;
-  let niveles = arrayNiveles(informacionDelJuego.grupoTarjetas);
-
-  if (nivelActual < niveles.length - 1) {
-    modalSubeNivel();
-  } else {
-    endGame();
-  }
-}
-
-// #region descubrir y comparar;
 
 /**
  * @description Descubre una tarjeta y comprueba si hay un par coincidente.
@@ -160,141 +121,36 @@ function error(lasTarjetas) {
   }, 1000);
 }
 
-/**
- * @description reinicia el juego utilizando la configuracion almacenada en
- * localStorage
- *
- * @function reiniciar
- *
- */
 function reiniciar() {
   // console.log('reiniciar()');
+  let informacionDelJuego = obtenerDatosJuego();
+
+  let modoBool = informacionDelJuego.modoRelax;
+
+  iniciaJuego(modoBool);
+}
+
+/**
+ * @description Finaliza el juego pausando el cronometro y mostrando  el modal
+ * correspondiente
+ *
+ * @function finalizar
+ * @global
+ */
+function finalizar() {
+  // console.log('finalizar()');
+
   let informacionDelJuego = JSON.parse(
     localStorage.getItem('informacionDelJuego')
   );
-  let modoBool = informacionDelJuego.modoRelax;
+  let nivelActual = informacionDelJuego.nivelActual;
+  let niveles = arrayNiveles(informacionDelJuego.grupoTarjetas);
 
-  inicioJuego(modoBool);
-}
-
-/**
- * @description inicia el juego en modo normal
- *
- * @function iniciaJuegoNormal
- * @param {boolean} modoRelax - indica si el modo relajado esta activo
- */
-function iniciaJuegoNormal(modoRelax) {
-  console.log('iniciaJuegoNormal', modoRelax);
-  document.querySelector('.cabecera').style.display = 'flex';
-  document.querySelector('main').style.display = 'flex';
-  document.querySelector('.btn-switch').style.display = 'flex';
-  document.querySelector('#cronometro').classList.remove('cronometro-oculto');
-
-  console.log('agrego 00 a minutos y segundos');
-  minutos.innerText = '00';
-  segundos.innerText = '00';
-
-  playPause();
-
-  const tiempo = {
-    minutos: 0,
-    segundos: 8,
-  };
-
-  iniciaCronometro(tiempo.minutos, tiempo.segundos);
-
-  // if (btnPlay.classList.contains('btn-visible')) {
-  //   pausarCronometro();
-  // }
-
-  // btnPause.style.display = 'block';
-  // btnPlay.style.display = 'none';
-
-  // btnSwitch.addEventListener('click', () => {
-  //   if (btnPlay.style.display === 'none') {
-  //     btnPlay.style.display = 'block';
-  //     btnPause.style.display = 'none';
-  //     pausarCronometro();
-  //   } else if (btnPlay.style.display === 'block') {
-  //     btnPlay.style.display = 'none';
-  //     btnPause.style.display = 'block';
-  //     iniciaCronometro(minutosRestantes, segundosRestantes);
-  //   }
-  // });
-  // playCronometro();
-  inicioJuego(modoRelax);
-}
-
-/**
- * @description Inicia Juego en modo relajado
- *
- * @function inciaJuegoRelax
- * @param {boolean} modoRelax - indica si el modo relajado  esta activo
- */
-function iniciaJuegoRelax(modoRelax) {
-  console.log('inciaJuegoRelax', modoRelax);
-  document.querySelector('.cabecera').style.display = 'flex';
-  document.querySelector('main').style.display = 'flex';
-  document.querySelector('.btn-switch').style.display = 'none';
-  document.querySelector('#cronometro').classList.add('cronometro-oculto');
-  inicioJuego(modoRelax);
-}
-
-/**
- * @description cierra el menu niveles cuando se hace clic fuera del contenedor
- *
- * @function clickFueraDelMenu
- * @param {Event} evento  - evento del clic
- */
-function clickFueraDelMenu(evento) {
-  if (evento.target.closest('.selecciona-nivel')) return;
-  document.querySelector('.selecciona-nivel').classList.remove('visible');
-}
-
-/**
- * @description cierra el menu de niveles cuando se presiona la tecla Escape
- *
- * @function teclasEscCierraMenu
- * @param {evento} evento - el evento del teclado
- */
-function teclasEscCierraMenu(evento) {
-  if (evento.key === 'Escape') ocultaMenuNiveles();
-}
-
-/**
- * @description anima la opaciodad de un elemento
- *
- * @function animarLaOpacidad
- * @param {HTMLElement} elemento - elemento a animar
- * @param {number} desde - el valor inicial de la opacidad
- * @param {number} hasta - el valor final de la opacidad
- * @param {number} duracion - la duracion de la animacion en milisengundos
- */
-function animarLaOpacidad(elemento, desde, hasta, duracion) {
-  const tiempo = 10;
-  const pasos = duracion / tiempo;
-  const tamaño = (hasta - desde) / pasos;
-  let pasoActual = 0;
-
-  function paso() {
-    if (pasoActual < pasos) {
-      elemento.style.opacity = parseFloat(elemento.style.opacity) + tamaño;
-      pasoActual++;
-      setTimeout(paso, tiempo);
-    }
+  if (nivelActual < niveles.length - 1) {
+    modalSubeNivel();
+  } else {
+    endGame();
   }
-  elemento.style.opacity = desde;
-  paso();
 }
 
-export {
-  obtieneCache,
-  descubrir,
-  comparar,
-  reiniciar,
-  iniciaJuegoNormal,
-  iniciaJuegoRelax,
-  clickFueraDelMenu,
-  teclasEscCierraMenu,
-  animarLaOpacidad,
-};
+export { obtieneCache, descubrir, reiniciar };

@@ -4,7 +4,6 @@
  * en el juego
  */
 
-// import { descubrir } from './functions.js';
 import { barajaTarjetas } from './generarGrupoTarjetas.js';
 
 /**

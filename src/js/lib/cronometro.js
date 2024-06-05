@@ -4,7 +4,7 @@
  */
 
 import { timeOver } from './modal.js';
-import { pocoTiempoSonido } from './variables.js';
+import { minutos, pocoTiempoSonido, segundos } from './variables.js';
 
 let temporizador,
   minutosRestantes,
@@ -92,13 +92,20 @@ function playCronometro() {
   return estaPausado;
 }
 
-function borrarCronometro() {
-  console.log('borrarCronometro()');
-  console.log('temoporizador', temporizador);
-  console.log('inicia clearInterval');
+/**
+ * @description Limpia el cronometro
+ *
+ * Esta función detiene el cronometro y reinicia los valores de los minutos y segundos restantes.
+ *
+ * @function resetearCronometro
+ */
+function resetearCronometro() {
   clearInterval(temporizador);
-  console.log('temoporizador', temporizador);
-  return;
+  minutosRestantes = 0;
+  segundosRestantes = 0;
+  estaPausado = false;
+  minutos.innerText = '00';
+  segundos.innerText = '00';
 }
 
 /**
@@ -116,7 +123,7 @@ export {
   iniciaCronometro,
   pausarCronometro,
   playCronometro,
-  borrarCronometro,
+  resetearCronometro,
   minutosRestantes,
   segundosRestantes,
 };

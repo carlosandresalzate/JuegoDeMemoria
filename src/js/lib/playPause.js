@@ -1,53 +1,38 @@
-import {
-  iniciaCronometro,
-  minutosRestantes,
-  pausarCronometro,
-  playCronometro,
-  segundosRestantes,
-} from './cronometro.js';
-import {
-  btnSwitch,
-  btnPlay,
-  btnPause,
-  minutos,
-  segundos,
-} from './variables.js';
+/**
+ * @file playPause.js
+ * @description Este archivo se encarga de los eventos relacionados con el
+ * evento del boton de play y pause
+ */
 
-function playPause() {
-  console.log('playPause()');
+import { pausarCronometro, playCronometro } from './cronometro.js';
+import { descubrir } from './functions.js';
+import { btnPause, btnPlay } from './variables.js';
 
-  btnPlay.classList.add('btn-hidden');
-  btnPause.classList.add('btn-visible');
-
-  // const tiempo = {
-  //   minutos: 0,
-  //   segundos: 8,
-  // };
-
-  // console.log('agrego 00 a minutos y segundos');
-  // minutos.innerText = '00';
-  // segundos.innerText = '00';
-
-  btnSwitch.addEventListener('click', (e) => {
-    if (btnPlay.classList.contains('btn-hidden')) {
-      console.log('pausar usa pausarCronometro');
-      btnPlay.classList.remove('btn-hidden');
-      btnPause.classList.remove('btn-visible');
-      btnPause.classList.add('btn-hidden');
-      btnPlay.classList.add('btn-visible');
-      pausarCronometro();
-    } else {
-      console.log('dar play usa playCronometro');
-      btnPause.classList.remove('btn-hidden');
-      btnPlay.classList.remove('btn-visible');
-      btnPause.classList.add('btn-visible');
-      btnPlay.classList.add('btn-hidden');
-      playCronometro();
-      // iniciaCronometro(minutosRestantes, segundosRestantes);
-    }
-  });
-  console.log('termina el evento e iniciaCronometro');
-  // iniciaCronometro(tiempo.minutos, tiempo.segundos);
+/**
+ *
+ * @param {Event} e - el evento clic
+ */
+function playPause(e) {
+  console.log(e);
+  if (btnPlay.classList.contains('btn-hidden')) {
+    btnPlay.classList.remove('btn-hidden');
+    btnPause.classList.remove('btn-visible');
+    btnPause.classList.add('btn-hidden');
+    btnPlay.classList.add('btn-visible');
+    pausarCronometro();
+    document.querySelectorAll('.tarjeta').forEach((element) => {
+      element.removeEventListener('click', descubrir);
+    });
+  } else {
+    btnPause.classList.remove('btn-hidden');
+    btnPlay.classList.remove('btn-visible');
+    btnPause.classList.add('btn-visible');
+    btnPlay.classList.add('btn-hidden');
+    playCronometro();
+    document.querySelectorAll('.tarjeta').forEach((element) => {
+      element.addEventListener('click', descubrir);
+    });
+  }
 }
 
 export { playPause };
