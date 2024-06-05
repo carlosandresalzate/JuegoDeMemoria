@@ -6,7 +6,7 @@
 import { obtieneCache } from './functions.js';
 import { distribuyePersonajesAleatorio } from './generarGrupoTarjetas.js';
 import { iniciaJuego } from './inicio.js';
-import { cacheKey } from './variables.js';
+import { btnPause, btnPlay, cacheKey } from './variables.js';
 
 /**
  * @description Crea un array de objetos que representan los niveles del juego
@@ -214,6 +214,12 @@ function cambiaNivel(evento) {
   const grupoTarjetas = distribuyePersonajesAleatorio(cacheTarjetas);
 
   if (nivel >= 0 && nivel < arrayNiveles(grupoTarjetas).length) {
+    if (btnPlay.classList.contains('btn-visible')) {
+      btnPlay.classList.remove('btn-visible');
+      btnPlay.classList.add('btn-hidden');
+      btnPause.classList.remove('btn-hidden');
+      btnPause.classList.add('btn-visible');
+    }
     actualizaNivel(nivelActual);
     iniciaJuego(modoRelax);
   }

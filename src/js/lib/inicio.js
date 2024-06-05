@@ -19,8 +19,13 @@ import {
   ocultaMenuNiveles,
   teclasEscCierraMenu,
 } from './niveles.js';
-import { movimientos } from './variables.js';
+import { btnPause, btnPlay, btnSwitch, movimientos } from './variables.js';
 
+/**
+ * @description funcion para iniciar eventos y modo de juego
+ * @function iniciaJuego
+ * @param {boolean} modoRelax
+ */
 function iniciaJuego(modoRelax) {
   let informacionDelJuego = obtenerDatosJuego();
 
@@ -63,14 +68,26 @@ function iniciaJuego(modoRelax) {
   });
 
   if (!modoRelax) {
-    console.log('!modoRelax', modoRelax);
+    // console.log('!modoRelax', modoRelax);
     document.querySelector('#cronometro').style.display = 'block';
-    document.querySelector('.btn-switch').style.display = 'flex';
-    document.querySelector('.btn-play').classList.add('btn-hidden');
+    btnSwitch.style.display = 'flex';
+
+    if (btnPlay.classList.contains('btn-visible')) {
+      btnPlay.classList.remove('btn-visible');
+      btnPlay.classList.add('btn-hidden');
+      btnPause.classList.remove('btn-hidden');
+      btnPause.classList.add('btn-visible');
+    } else {
+      btnPlay.classList.remove('btn-visible');
+      btnPlay.classList.add('btn-hidden');
+      btnPause.classList.remove('btn-hidden');
+      btnPause.classList.add('btn-visible');
+    }
+
     resetearCronometro();
     modoDeJuegoNormal();
   } else {
-    console.log('modoRelax', modoRelax);
+    // console.log('modoRelax', modoRelax);
     document.querySelector('#cronometro').style.display = 'none';
     document.querySelector('.btn-switch').style.display = 'none';
     document.querySelector('.btn-play').classList.add('btn-hidden');

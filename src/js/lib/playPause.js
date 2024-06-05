@@ -13,7 +13,6 @@ import { btnPause, btnPlay } from './variables.js';
  * @param {Event} e - el evento clic
  */
 function playPause(e) {
-  console.log(e);
   if (btnPlay.classList.contains('btn-hidden')) {
     btnPlay.classList.remove('btn-hidden');
     btnPause.classList.remove('btn-visible');
