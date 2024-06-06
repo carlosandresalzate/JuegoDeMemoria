@@ -31,14 +31,14 @@ function arrayNiveles(grupoTarjetas) {
       movimientosMax: 8,
       tiempo: {
         minutos: 0,
-        segundos: 10,
+        segundos: 30,
       },
     },
     {
       tarjetas: grupoTarjetas[0].concat(grupoTarjetas[1], grupoTarjetas[2]),
       movimientosMax: 12,
       tiempo: {
-        minutos: 0,
+        minutos: 1,
         segundos: 10,
       },
     },
@@ -50,8 +50,8 @@ function arrayNiveles(grupoTarjetas) {
       ),
       movimientosMax: 25,
       tiempo: {
-        minutos: 0,
-        segundos: 10,
+        minutos: 1,
+        segundos: 45,
       },
     },
     {
@@ -63,8 +63,8 @@ function arrayNiveles(grupoTarjetas) {
       ),
       movimientosMax: 60,
       tiempo: {
-        minutos: 0,
-        segundos: 10,
+        minutos: 2,
+        segundos: 30,
       },
     },
   ];
