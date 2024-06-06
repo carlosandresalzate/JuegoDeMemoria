@@ -89,3 +89,5 @@ para más detalles.
 - Invita una cerveza 🍺 o un café ☕ a alguien del equipo.
 - Da las gracias públicamente 🤓.
 - ⌨️ con ❤️ por Carlos Andres Alzate 😊
+
+## Issues Abiertas(conocidas)
