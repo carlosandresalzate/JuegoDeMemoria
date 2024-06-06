@@ -93,4 +93,4 @@ para más detalles.
 - Da las gracias públicamente 🤓.
 - ⌨️ con ❤️ por Carlos Andres Alzate 😊
 
-## Issues Abiertas(conocidas)
+## Issues Abiertas
