@@ -17,7 +17,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issues = await github.paginate(github.issues.listForRepo, {
+            const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
               per_page: 100,
@@ -26,13 +26,11 @@ jobs:
 
             const issueList = issues.map(issue => `* [${issue.title}](${issue.html_url})`).join('\n');
 
-            return {
-              issues: issueList
-            };
+            return issueList;
 
       - name: Actualizar Readme
         run: |
-          issue_list="${{ steps.obtener_lista_issues.outputs.issues }}"
+          issue_list="${{ steps.obtener_lista_issues.outputs.result }}"
           # Usamos sed para reemplazar la sección de Issues Abiertas en el README.md
           sed -i '/## Issues Abiertas/,$d' README.md
           echo -e "## Issues Abiertas\n\n$issue_list\n" >> README.md
