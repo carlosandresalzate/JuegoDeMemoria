@@ -4,6 +4,9 @@ Este proyecto es un juego de memoria basado en personajes de la serie de Rick
 and Morty. Utiliza la API de Rick and Morty para obtener información sobre los
 personajes y presenta una experiencia interactiva y divertida.
 
+Quieres jugar ahora:
+[LINK](https://carlosandresalzate.github.io/JuegoDeMemoria/)
+
 ## Comenzando 🚀
 
 Estas instrucciones te permitirán obtener una copia del proyecto en
