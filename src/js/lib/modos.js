@@ -5,6 +5,8 @@
  */
 
 import { iniciaCronometro } from './cronometro.js';
+import { obtenerDatosJuego } from './localStorage.js';
+import { arrayNiveles } from './niveles.js';
 import { playPause } from './playPause.js';
 import { btnSwitch } from './variables.js';
 
@@ -16,10 +18,16 @@ function modoDeJuegoNormal() {
   console.log('modo normal');
   btnSwitch.addEventListener('click', playPause);
 
-  const tiempo = {
-    minutos: 0,
-    segundos: 8,
-  };
+  const informacionDelJuego = obtenerDatosJuego();
+  const niveles = arrayNiveles(informacionDelJuego.grupoTarjetas);
+
+  let tiempo = {};
+
+  niveles.forEach((element, i) => {
+    if (informacionDelJuego.nivelActual === i) {
+      tiempo = element.tiempo;
+    }
+  });
 
   iniciaCronometro(tiempo.minutos, tiempo.segundos);
 }
