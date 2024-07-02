@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     escribeNiveles(niveles);
 
     Swal.fire({
-      // width: '100%',
+      // width: '100%', // Esto es un tamaño muy grande para la modal y cubre el backdrop.
       heightAuto: false,
       backdrop: 'white',
       title: '👋 ¡Hola 🎮! 👋',
